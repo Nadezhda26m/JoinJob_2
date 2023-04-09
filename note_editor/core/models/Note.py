@@ -1,16 +1,25 @@
 from datetime import datetime
 
+
 class Note:
-    def __init__(self, id: int, title, text, date_time: datetime):
-        self.id = id
+    def __init__(self, title: str, text: str, date_time: datetime,
+                 note_id: int, short_text: int = 10):
         self.title = title
         self.text = text
         self.date_time = date_time
+        self.NOTE_ID = note_id
+        self.short_text = short_text
 
-    def get_note_info(self):
-        return f'id_{self.id} title:{self.title}, date:{self.date_time.date()} ' \
-               f'{self.date_time.time().hour}:{self.date_time.time().minute}\ntext:{self.text}'
+    def __get_date(self):
+        return self.date_time.strftime("%d.%m.%Y %H:%M")
+
+    def __str__(self) -> str:
+        return f'#{self.NOTE_ID:04} <{self.title}> {self.__get_date()}\n\t{self.text}'
+
+    def __repr__(self):
+        return f'#{self.NOTE_ID:04} <{self.title}> {self.__get_date()} ' \
+               f'>>> {self.text[:self.short_text]}...'
+
+    # def __eq__(self, other): pass
 
 
-new_note = Note(1, 'Note 1', 'Text 1', datetime.now())
-print(new_note.get_note_info())
