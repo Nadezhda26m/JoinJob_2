@@ -1,0 +1,4 @@
+database/
+*.pyc
+*.csv
+*.json
