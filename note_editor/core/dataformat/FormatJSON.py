@@ -28,5 +28,5 @@ class FormatJSON(FormatNote):
     def convert_notepad_from_format(self, notepad) -> Notepad:
         list_notes = Notepad()
         for note in notepad:
-            list_notes.add_note(self.convert_note_from_format(note))
+            list_notes.add_note_to_end(self.convert_note_from_format(note))
         return list_notes
