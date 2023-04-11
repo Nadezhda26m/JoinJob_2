@@ -10,9 +10,6 @@ class Note:
         self.NOTE_ID = note_id
         self.short_text = short_text
 
-    def __get_date(self):
-        return self.date_time.strftime("%d.%m.%Y %H:%M")
-
     def __str__(self) -> str:
         return f'#{self.NOTE_ID:04} <{self.title}> {self.__get_date()}\n\t{self.text}'
 
@@ -20,6 +17,5 @@ class Note:
         return f'#{self.NOTE_ID:04} <{self.title}> {self.__get_date()} ' \
                f'>>> {self.text[:self.short_text]}...'
 
-    # def __eq__(self, other): pass
-
-
+    def __get_date(self):
+        return self.date_time.strftime("%d.%m.%Y %H:%M")
