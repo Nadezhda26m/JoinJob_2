@@ -1,3 +1,4 @@
+import datetime
 from abc import ABC, abstractmethod
 
 
@@ -9,14 +10,14 @@ class View(ABC):
     @abstractmethod
     def get_note_text(self) -> str: pass
 
-    @abstractmethod
-    def get_len_preview_text(self) -> int: pass
+    # @abstractmethod
+    # def get_len_preview_text(self) -> int: pass
 
     @abstractmethod
-    def show_full_note(self, full_note: str): pass
+    def print_str(self, format_note: str): pass
 
     @abstractmethod
-    def show_short_note(self, short_note: str): pass
+    def show_notepad(self, format_note: str, index: int): pass
 
     @abstractmethod
     def get_index_note(self, max_index: int) -> int: pass
@@ -32,3 +33,12 @@ class View(ABC):
 
     @abstractmethod
     def show_parameters(self, parameters: list[str]): pass
+
+    @abstractmethod
+    def show_old_title(self, old_value: str, name_value: str = ""): pass
+
+    @abstractmethod
+    def show_old_text(self, old_value: str, name_value: str = ""): pass
+
+    @abstractmethod
+    def get_date(self, format_date="%d.%m.%Y") -> datetime: pass
