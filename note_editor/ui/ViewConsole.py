@@ -1,5 +1,6 @@
-from JoinJob2NoteEditor.note_editor.core.mvp.View import View
+import datetime
 
+from JoinJob2NoteEditor.note_editor.core.mvp.View import View
 
 class ViewConsole(View):
 
@@ -19,20 +20,20 @@ class ViewConsole(View):
             print("Текст должен содержать минимум 1 символ")
             return self.get_note_text()
 
-    def get_len_preview_text(self) -> int:
-        len_short_text = input("Введите минимальное количество символов для отображения "
-                               "текста заметки \nв свернутой форме: ")
-        if len_short_text.isdigit() and 0 < int(len_short_text) < 16:
-            return int(len_short_text)
-        else:
-            print("Введите число от 1 до 15")
-            return self.get_len_preview_text()
+    # def get_len_preview_text(self) -> int:
+    #     len_short_text = input("Введите минимальное количество символов для отображения "
+    #                            "текста заметки \nв свернутой форме: ")
+    #     if len_short_text.isdigit() and 0 < int(len_short_text) < 16:
+    #         return int(len_short_text)
+    #     else:
+    #         print("Введите число от 1 до 15")
+    #         return self.get_len_preview_text()
 
-    def show_full_note(self, full_note: str):
-        print(full_note)
+    def print_str(self, format_note: str):
+        print(format_note)
 
-    def show_short_note(self, short_note: str):
-        self.show_full_note(short_note)
+    def show_notepad(self, format_note: str, index: int):
+        print(f'{index}. {format_note}')
 
     def get_index_note(self, max_index: int) -> int:
         index = input("Введите номер заметки: ")
@@ -58,10 +59,41 @@ class ViewConsole(View):
             print(f"Неверная команда")
             return self.get_index_command(commands)
 
-    def get_parameter_to_change(self, parameters: list[str]) -> int:
-        index = input("Выберите параметр для изменения. Введите число: ")
-        if index.isdigit() and 0 < int(index) <= len(parameters):
-            return int(index) - 1
+    def get_parameter_to_change(self, parameters: list[str], flag=True) -> int:
+        if flag:
+            print("Выберите параметр для изменения: ")
+            self.show_parameters(parameters)
+        number = input("Введите число: ")
+        if number.isdigit() and 0 < int(number) <= len(parameters):
+            return int(number)
         else:
             print(f"Введите число от 1 до {len(parameters)} включительно")
-            return self.get_parameter_to_change(parameters)
+            return self.get_parameter_to_change(parameters, False)
+
+    def show_old_title(self, old_value: str, name_value="заголовок"):
+        print(f"Текущий {name_value}: {old_value}")
+
+    def show_old_text(self, old_value: str, name_value="текст"):
+        self.show_old_title(old_value, name_value)
+
+    def get_date(self, format_date="%d.%m.%Y") -> datetime:
+        date_now = datetime.datetime.now()
+        date = input("Введите дату в формате дд.мм.гггг: ")
+        flag = True
+        if len(date.split('.')) == 3:
+            try:
+                datetime.datetime.strptime(date, format_date)
+            except Exception:
+                flag = False
+        else:
+            flag = False
+        if flag:
+            input_date = datetime.datetime.strptime(date, format_date)
+            if input_date <= date_now and input_date.year >= 2000:
+                return input_date
+            else:
+                print(f"Введите корректную дату (01.01.2000 - "
+                      f"{date_now.strftime(format_date)})")
+                return self.get_date()
+        print('Неверный формат даты')
+        return self.get_date()
