@@ -10,8 +10,8 @@ class View(ABC):
     @abstractmethod
     def get_note_text(self) -> str: pass
 
-    # @abstractmethod
-    # def get_len_preview_text(self) -> int: pass
+    @abstractmethod
+    def get_len_preview_text(self) -> int: pass
 
     @abstractmethod
     def print_str(self, format_note: str): pass
@@ -42,3 +42,6 @@ class View(ABC):
 
     @abstractmethod
     def get_date(self, format_date="%d.%m.%Y") -> datetime: pass
+
+    @abstractmethod
+    def confirm_action(self) -> bool: pass

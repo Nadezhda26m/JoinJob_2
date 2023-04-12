@@ -51,3 +51,8 @@ class Notepad:
             return max(self._list_notes, key=lambda k: k.NOTE_ID).NOTE_ID
         else:
             return 0
+
+    def get_len_short_text(self) -> int:
+        if self.size() > 0 and 0 < self._list_notes[0].short_text < 16:
+            return self._list_notes[0].short_text
+        return 10

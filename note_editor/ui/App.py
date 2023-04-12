@@ -6,9 +6,11 @@ from JoinJob2NoteEditor.note_editor.ui.ViewConsole import ViewConsole
 
 def app_note_editor():
     p = Presenter(ModelJSON(PATH_DB, "my_note"), ViewConsole())
-    commands = ["add", "change", "open", "showall", "del", "delall", "searchdate", "exit"]
+    commands = ["add", "change", "open", "showall", "del", "delall", "searchdate",
+                "lenpreview",  "exit"]
     flag = True
     p.view.print_str("Добро пожаловать в редактор заметок")
+    p.view.print_str(f"Доступное количество заметок: {p.notepad.size()}")
     while flag:
         p.view.show_commands(commands)
         index = p.view.get_index_command(commands)
@@ -20,5 +22,6 @@ def app_note_editor():
             case 4: p.del_note()
             case 5: p.del_all()
             case 6: p.filter_date()
-            case 7: flag = False
-    p.view.print_str("Завершение работы")
+            case 7: p.change_len_preview_text()
+            case 8: flag = False
+    p.view.print_str("\nЗавершение работы")
