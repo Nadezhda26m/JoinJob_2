@@ -8,13 +8,13 @@ from JoinJob2NoteEditor.note_editor.core.mvp.View import View
 class Presenter:
 
     def __init__(self, model: Model, view: View):
-        self.model = model
+        self.__model = model
         self.view = view
         self.notepad: Notepad = model.read_file()
-        self.index: int = self.notepad.get_max_note_id() + 1
-        self.len_preview = self.notepad.get_len_short_text()
-        self.parameters = ["Изменить заголовок", "Изменить текст заметки",
-                           "Изменить заголовок и текст заметки"]
+        self.__index: int = self.notepad.get_max_note_id() + 1
+        self.__len_preview = self.notepad.get_len_short_text()
+        self.__parameters = ["Изменить заголовок", "Изменить текст заметки",
+                             "Изменить заголовок и текст заметки"]
 
     def __str__(self):
         return f"{self.notepad}"
@@ -22,19 +22,19 @@ class Presenter:
     def add_new_note(self):
         new_note = Note(self.view.get_note_title(),
                         self.view.get_note_text(),
-                        datetime.now(), self.index,
-                        self.len_preview)
+                        datetime.now(), self.__index,
+                        self.__len_preview)
         self.notepad.add_note(new_note)
-        self.index += 1
+        self.__index += 1
         self.view.print_str(f"Заметка {new_note.show_id_title()} успешно создана")
-        self.model.add_to_file(self.notepad)
+        self.__model.add_to_file(self.notepad)
 
     def change_note(self):
-        if self.is_not_empty():
+        if self.__is_not_empty():
             index_note = self.get_index_note("Доступна одна заметка. Выбрать ее?")
             if index_note >= 0:
                 select_note = self.notepad.read_note(index_note)
-                parameter = self.view.get_parameter_to_change(self.parameters)
+                parameter = self.view.get_parameter_to_change(self.__parameters)
                 match parameter:
                     case 1:
                         self.view.show_old_title(select_note.title)
@@ -49,33 +49,33 @@ class Presenter:
                         new_text = self.view.get_note_text()
                         self.notepad.change_note(index_note, new_title, new_text)
                 self.view.print_str("Изменения сохранены")
-                self.model.add_to_file(self.notepad)
+                self.__model.add_to_file(self.notepad)
 
     def del_note(self):
-        if self.is_not_empty():
+        if self.__is_not_empty():
             index_note = self.get_index_note("Доступна одна заметка. Удалить?", True)
             if index_note >= 0:
                 self.notepad.del_note(index_note)
-                self.model.add_to_file(self.notepad)
+                self.__model.add_to_file(self.notepad)
                 self.view.print_str("Заметка удалена")
 
     def del_all(self):
-        if self.is_not_empty():
+        if self.__is_not_empty():
             self.view.print_str(f"Удалить все заметки ({self.notepad.size()} шт.)?")
             if self.view.confirm_action():
                 self.notepad.del_all()
-                self.model.add_to_file(self.notepad)
-                self.index = 1
+                self.__model.add_to_file(self.notepad)
+                self.__index = 1
                 self.view.print_str("Все заметки удалены")
 
     def show_note(self):
-        if self.is_not_empty():
+        if self.__is_not_empty():
             index_note = self.get_index_note("Доступна одна заметка. Открыть?")
             if index_note >= 0:
                 self.view.print_str(self.notepad.read_note(index_note))
 
     def show_notepad(self):
-        if self.is_not_empty():
+        if self.__is_not_empty():
             self.view.print_str("Список заметок")
             i = 1
             for note in self.notepad.read_all():
@@ -83,7 +83,7 @@ class Presenter:
                 i += 1
 
     def filter_date(self):
-        if self.is_not_empty():
+        if self.__is_not_empty():
             date = self.view.get_date()
             fit_notes = []
             for note in self.notepad.read_all():
@@ -98,7 +98,7 @@ class Presenter:
             else:
                 self.view.print_str("Подходящие записи не найдены")
 
-    def is_not_empty(self):
+    def __is_not_empty(self):
         if self.notepad.size() > 0:
             return True
         else:
@@ -124,12 +124,11 @@ class Presenter:
 
     def change_len_preview_text(self):
         new_len = self.view.get_len_preview_text()
-        if new_len != self.len_preview:
-            self.len_preview = new_len
+        if new_len != self.__len_preview:
+            self.__len_preview = new_len
             for note in self.notepad.read_all():
-                note.short_text = self.len_preview
-            self.model.add_to_file(self.notepad)
+                note.short_text = self.__len_preview
+            self.__model.add_to_file(self.notepad)
             self.view.print_str("Настройки изменены")
         else:
             self.view.print_str("Оставлены текущие настройки")
-
