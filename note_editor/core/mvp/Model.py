@@ -9,10 +9,10 @@ class Model(ABC):
 
     @abstractmethod
     def __init__(self, path, file_name, extension, data_format: FormatNote):
-        self.file = path + file_name + extension
-        self.data_format = data_format
-        if not isfile(self.file):
-            Path(self.file).touch()
+        self._file = path + file_name + extension
+        self._data_format = data_format
+        if not isfile(self._file):
+            Path(self._file).touch()
 
     @abstractmethod
     def add_to_file(self, notepad: Notepad): pass
