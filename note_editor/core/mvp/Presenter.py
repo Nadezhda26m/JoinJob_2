@@ -12,6 +12,7 @@ class Presenter:
         self.view = view
         self.notepad: Notepad = model.read_file()
         self.index: int = self.notepad.get_max_note_id() + 1
+        self.len_preview = self.notepad.get_len_short_text()
         self.parameters = ["Изменить заголовок", "Изменить текст заметки",
                            "Изменить заголовок и текст заметки"]
 
@@ -21,7 +22,8 @@ class Presenter:
     def add_new_note(self):
         new_note = Note(self.view.get_note_title(),
                         self.view.get_note_text(),
-                        datetime.now(), self.index)
+                        datetime.now(), self.index,
+                        self.len_preview)
         self.notepad.add_note(new_note)
         self.index += 1
         self.view.print_str(f"Заметка {new_note.show_id_title()} успешно создана")
@@ -119,3 +121,15 @@ class Presenter:
                 if not self.view.confirm_action():
                     return -1
             return index_note
+
+    def change_len_preview_text(self):
+        new_len = self.view.get_len_preview_text()
+        if new_len != self.len_preview:
+            self.len_preview = new_len
+            for note in self.notepad.read_all():
+                note.short_text = self.len_preview
+            self.model.add_to_file(self.notepad)
+            self.view.print_str("Настройки изменены")
+        else:
+            self.view.print_str("Оставлены текущие настройки")
+
