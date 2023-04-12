@@ -42,3 +42,6 @@ class View(ABC):
 
     @abstractmethod
     def get_date(self, format_date="%d.%m.%Y") -> datetime: pass
+
+    @abstractmethod
+    def confirm_action(self) -> bool: pass
