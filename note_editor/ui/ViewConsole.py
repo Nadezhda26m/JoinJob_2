@@ -20,14 +20,14 @@ class ViewConsole(View):
             print("Текст должен содержать минимум 1 символ")
             return self.get_note_text()
 
-    # def get_len_preview_text(self) -> int:
-    #     len_short_text = input("Введите минимальное количество символов для отображения "
-    #                            "текста заметки \nв свернутой форме: ")
-    #     if len_short_text.isdigit() and 0 < int(len_short_text) < 16:
-    #         return int(len_short_text)
-    #     else:
-    #         print("Введите число от 1 до 15")
-    #         return self.get_len_preview_text()
+    def get_len_preview_text(self) -> int:
+        len_short_text = input("Введите минимальное количество символов для отображения "
+                               "текста заметки \nв свернутой форме: ")
+        if len_short_text.isdigit() and 0 < int(len_short_text) < 16:
+            return int(len_short_text)
+        else:
+            print("Введите число от 1 до 15")
+            return self.get_len_preview_text()
 
     def print_str(self, format_note: str):
         print(format_note)
@@ -44,7 +44,7 @@ class ViewConsole(View):
             return self.get_index_note(max_index)
 
     def show_commands(self, commands: list[str]):
-        print("Список доступных команд: ", end="")
+        print("\nСписок доступных команд: ", end="")
         print(', '.join(commands))
 
     def show_parameters(self, parameters: list[str]):
@@ -56,7 +56,7 @@ class ViewConsole(View):
         if command in commands:
             return commands.index(command)
         else:
-            print(f"Неверная команда")
+            print("Неверная команда")
             return self.get_index_command(commands)
 
     def get_parameter_to_change(self, parameters: list[str], flag=True) -> int:
@@ -97,3 +97,12 @@ class ViewConsole(View):
                 return self.get_date()
         print('Неверный формат даты')
         return self.get_date()
+
+    def confirm_action(self) -> bool:
+        action = input("Подтвердите действие (yes/no): ")
+        if action == "yes":
+            return True
+        elif action == "no":
+            return False
+        print("Неверная команда")
+        return self.confirm_action()
