@@ -17,5 +17,8 @@ class Note:
         return f'#{self.NOTE_ID:04} <{self.title}> {self.__get_date()} ' \
                f'>>> {self.text[:self.short_text]}...'
 
+    def show_id_title(self) -> str:
+        return f'#{self.NOTE_ID:04} <{self.title}>'
+
     def __get_date(self):
         return self.date_time.strftime("%d.%m.%Y %H:%M")
