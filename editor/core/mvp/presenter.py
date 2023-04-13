@@ -1,8 +1,8 @@
 from datetime import datetime
-from note_editor.core.infrastructure.Notepad import Notepad
-from note_editor.core.infrastructure.Note import Note
-from note_editor.core.mvp.Model import Model
-from note_editor.core.mvp.View import View
+from editor.core.infrastructure.notepad import Notepad
+from editor.core.infrastructure.note import Note
+from editor.core.mvp.model import Model
+from editor.core.mvp.view import View
 
 
 class Presenter:

@@ -1,7 +1,7 @@
-from note_editor.core.mvp.Presenter import Presenter
+from editor.core.mvp.presenter import Presenter
 from path_db import PATH_DB
-from note_editor.core.mvp.ModelJSON import ModelJSON
-from note_editor.ui.ViewConsole import ViewConsole
+from editor.core.mvp.model_json import ModelJSON
+from editor.ui.view_console import ViewConsole
 
 
 def app_note_editor():

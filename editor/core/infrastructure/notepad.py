@@ -1,4 +1,4 @@
-from note_editor.core.infrastructure.Note import *
+from editor.core.infrastructure.note import *
 
 
 class Notepad:

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from note_editor.core.infrastructure.Notepad import Notepad
-from note_editor.core.infrastructure.Note import *
+from editor.core.infrastructure.notepad import Notepad
+from editor.core.infrastructure.note import *
 
 
 class FormatNote(ABC):

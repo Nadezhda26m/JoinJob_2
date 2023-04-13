@@ -1,6 +1,6 @@
 import datetime
 
-from note_editor.core.mvp.View import View
+from editor.core.mvp.view import View
 
 class ViewConsole(View):
 

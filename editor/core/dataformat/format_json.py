@@ -1,4 +1,4 @@
-from note_editor.core.dataformat.FormatNote import *
+from editor.core.dataformat.format_note import *
 
 
 class FormatJSON(FormatNote):

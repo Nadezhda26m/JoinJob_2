@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from note_editor.core.dataformat.FormatNote import FormatNote
-from note_editor.core.infrastructure.Notepad import Notepad
+from editor.core.dataformat.format_note import FormatNote
+from editor.core.infrastructure.notepad import Notepad
 from os.path import isfile
 from pathlib import Path
 
