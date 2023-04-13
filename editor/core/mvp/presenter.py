@@ -91,6 +91,7 @@ class Presenter:
                 if d.day == date.day and d.month == date.month and d.year == date.year:
                     fit_notes.append(note)
             if len(fit_notes) > 0:
+                self.view.print_str("Результат поиска")
                 i = 1
                 for note in fit_notes:
                     self.view.show_notepad(note.__repr__(), i)
