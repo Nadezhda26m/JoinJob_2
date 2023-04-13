@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from JoinJob2NoteEditor.note_editor.core.dataformat.FormatNote import FormatNote
-from JoinJob2NoteEditor.note_editor.core.infrastructure.Notepad import Notepad
+from editor.core.dataformat.format_note import FormatNote
+from editor.core.infrastructure.notepad import Notepad
 from os.path import isfile
 from pathlib import Path
 

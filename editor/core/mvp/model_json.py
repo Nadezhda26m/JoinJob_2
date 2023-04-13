@@ -1,6 +1,6 @@
 from os.path import getsize
-from JoinJob2NoteEditor.note_editor.core.dataformat.FormatJSON import FormatJSON
-from JoinJob2NoteEditor.note_editor.core.mvp.Model import *
+from editor.core.dataformat.format_json import FormatJSON
+from editor.core.mvp.model import *
 import json
 
 
