@@ -1,4 +1,4 @@
-from JoinJob2NoteEditor.note_editor.core.models.Note import *
+from note_editor.core.infrastructure.Note import *
 
 
 class Notepad:

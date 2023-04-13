@@ -1,8 +1,8 @@
 from datetime import datetime
-from JoinJob2NoteEditor.note_editor.core.infrastructure.Notepad import Notepad
-from JoinJob2NoteEditor.note_editor.core.models.Note import Note
-from JoinJob2NoteEditor.note_editor.core.mvp.Model import Model
-from JoinJob2NoteEditor.note_editor.core.mvp.View import View
+from note_editor.core.infrastructure.Notepad import Notepad
+from note_editor.core.infrastructure.Note import Note
+from note_editor.core.mvp.Model import Model
+from note_editor.core.mvp.View import View
 
 
 class Presenter:

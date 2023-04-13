@@ -1,4 +1,4 @@
-from JoinJob2NoteEditor.note_editor.core.dataformat.FormatNote import *
+from note_editor.core.dataformat.FormatNote import *
 
 
 class FormatJSON(FormatNote):

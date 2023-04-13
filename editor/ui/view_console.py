@@ -1,6 +1,6 @@
 import datetime
 
-from JoinJob2NoteEditor.note_editor.core.mvp.View import View
+from note_editor.core.mvp.View import View
 
 class ViewConsole(View):
 

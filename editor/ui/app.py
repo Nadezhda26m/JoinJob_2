@@ -1,7 +1,7 @@
-from JoinJob2NoteEditor.note_editor.core.mvp.Presenter import Presenter
-from JoinJob2NoteEditor.note_editor.path_db import PATH_DB
-from JoinJob2NoteEditor.note_editor.core.mvp.ModelJSON import ModelJSON
-from JoinJob2NoteEditor.note_editor.ui.ViewConsole import ViewConsole
+from note_editor.core.mvp.Presenter import Presenter
+from path_db import PATH_DB
+from note_editor.core.mvp.ModelJSON import ModelJSON
+from note_editor.ui.ViewConsole import ViewConsole
 
 
 def app_note_editor():

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from JoinJob2NoteEditor.note_editor.core.infrastructure.Notepad import Notepad
-from JoinJob2NoteEditor.note_editor.core.models.Note import *
+from note_editor.core.infrastructure.Notepad import Notepad
+from note_editor.core.infrastructure.Note import *
 
 
 class FormatNote(ABC):
